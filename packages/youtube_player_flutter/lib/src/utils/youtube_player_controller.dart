@@ -289,7 +289,6 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
   void turnOffFullScreenMode() {
     updateValue(value.copyWith(isFullScreen: false));
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    }
   }
 
   /// MetaData for the currently loaded or cued video.
