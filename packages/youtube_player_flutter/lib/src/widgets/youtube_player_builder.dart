@@ -79,7 +79,7 @@ class _YoutubePlayerBuilderState extends State<YoutubePlayerBuilder>
             return false;
           } else if (controller.value.isFullScreen) {
             print('------------- WillPopScope YoutubePlayerBuilder controller.value.isFullScreen-------------');
-            controller.toggleFullScreenMode(isFullScreen);
+            controller.toggleFullScreenMode();
             return false;
           }
           return true;
