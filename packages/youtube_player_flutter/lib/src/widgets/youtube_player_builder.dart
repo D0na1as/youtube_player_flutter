@@ -74,7 +74,10 @@ class _YoutubePlayerBuilderState extends State<YoutubePlayerBuilder>
           print(widget.player.controller.value.isFullScreen);
           print('------------- WillPopScope YoutubePlayerBuilder -------------');
           final controller = widget.player.controller;
-          if (controller.value.isFullScreen) {
+          if (MediaQuery.of(context).orientation != Orientation.portrait) {
+            controller.toggleFullScreenMode(isFullScreen: false);
+            return false;
+          } else if (controller.value.isFullScreen) {
             print('------------- WillPopScope YoutubePlayerBuilder controller.value.isFullScreen-------------');
             controller.toggleFullScreenMode();
             return false;
