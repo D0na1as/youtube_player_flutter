@@ -130,6 +130,10 @@ class YoutubePlayer extends StatefulWidget {
   /// {@endtemplate}
   final bool showVideoProgressIndicator;
 
+  final TextStyle errorStyle;
+
+  final String errorCodeText;
+
   /// Creates [YoutubePlayer] widget.
   const YoutubePlayer({
     this.key,
@@ -146,6 +150,12 @@ class YoutubePlayer extends StatefulWidget {
     this.topActions,
     this.bottomActions,
     this.actionsPadding = const EdgeInsets.all(8.0),
+    this.errorCodeText = 'Error code',
+    this.errorStyle = const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.w300,
+      fontSize: 15.0,
+    ),
     this.thumbnail,
     this.showVideoProgressIndicator = false,
   })  : progressColors = progressColors ?? const ProgressBarColors(),
@@ -265,22 +275,15 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
                                 ? controller.metadata.videoId
                                 : controller.initialVideoId,
                           ),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 15.0,
-                          ),
+                          style: style: widget.errorStyle,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 16.0),
                   Text(
-                    'Error Code: ${controller.value.errorCode}',
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w300,
-                    ),
+                    '${widget.errorCodeText}: ${controller.value.errorCode}',
+                    style: widget.errorStyle,
                   ),
                 ],
               ),
