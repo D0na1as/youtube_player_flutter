@@ -51,10 +51,12 @@ class _YoutubePlayerBuilderState extends State<YoutubePlayerBuilder>
     final physicalSize = SchedulerBinding.instance.window.physicalSize;
     final controller = widget.player.controller;
     if (physicalSize.width > physicalSize.height) {
+      print('------------- (physicalSize.width > physicalSize.height) -------------');
       controller.updateValue(controller.value.copyWith(isFullScreen: true));
       //SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       widget.onEnterFullScreen?.call();
     } else {
+      print('-------------  else { (physicalSize.width > physicalSize.height) } -------------');
       controller.updateValue(controller.value.copyWith(isFullScreen: false));
       //SystemChrome.restoreSystemUIOverlays();
       widget.onExitFullScreen?.call();
@@ -68,8 +70,10 @@ class _YoutubePlayerBuilderState extends State<YoutubePlayerBuilder>
       key: playerKey,
       child: WillPopScope(
         onWillPop: () async {
+          print('------------- WillPopScope YoutubePlayerBuilder -------------');
           final controller = widget.player.controller;
           if (controller.value.isFullScreen) {
+            print('------------- WillPopScope YoutubePlayerBuilder controller.value.isFullScreen-------------');
             widget.player.controller.toggleFullScreenMode();
             return false;
           }
