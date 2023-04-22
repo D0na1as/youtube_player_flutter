@@ -273,14 +273,9 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
   void setPlaybackRate(double rate) => _callMethod('setPlaybackRate($rate)');
 
   /// Toggles the player's full screen mode.
-  void toggleFullScreenMode({bool? isFullScreen}) {
-    if (isFullScreen!=null && isFullScreen!) {
-      updateValue(value.copyWith(isFullScreen: !isFullScreen!));
-    } else {
-      updateValue(value.copyWith(isFullScreen: !value.isFullScreen));
-    }
-
-    if (value.isFullScreen || (isFullScreen!=null && isFullScreen!) ) {
+  void toggleFullScreenMode() {
+    updateValue(value.copyWith(isFullScreen: !value.isFullScreen));
+    if (value.isFullScreen) {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight,
@@ -288,11 +283,6 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
     } else {
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     }
-  }
-
-  /// Toggles the player's full screen mode.
-  void turnOffFullScreenMode() {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   /// MetaData for the currently loaded or cued video.
