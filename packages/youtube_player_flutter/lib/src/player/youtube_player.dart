@@ -275,7 +275,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
                                 ? controller.metadata.videoId
                                 : controller.initialVideoId,
                           ),
-                          style: style: widget.errorStyle,
+                          style: widget.errorStyle,
                         ),
                       ),
                     ],
